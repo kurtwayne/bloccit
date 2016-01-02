@@ -1,0 +1,45 @@
+<p>
+  <strong>Title:</strong>
+  <%= @question.title %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @question.body %>
+</p>
+
+<h2>Answers</h2>
+<%= @question.answers.each do |answer| %>
+<p>
+  <strong>Answerer:</strong>
+  <%= answer.answerer %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= answer.body %>
+</p>
+
+<% end %>
+
+<!-- This adds a form on the Question show page that creates a new answer by
+calling the AnswersController create action. The form_for call here uses
+an array, which will build a nested route, such as /questions/1/answers. -->
+
+<h2>Add a answer:</h2>
+<%= form_for([@question, @question.answers.build]) do |f| %>
+<p>
+  <%= f.label :answerer %><br>
+  <%= f.text_field :answerer %>
+</p>
+<p>
+  <%= f.label :body %><br>
+  <%= f.text_area :body %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>
