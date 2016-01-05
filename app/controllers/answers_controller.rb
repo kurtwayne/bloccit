@@ -5,6 +5,14 @@ class AnswersController < ApplicationController
     redirect_to question_path(@question)
   end
 
+  def destroy
+    @question = Question.find(params[:question_id])
+    @answer = @question.comments.find(params[:id])
+    @answer.destroy
+    redirect_to question_path(@question)
+  end
+
+
   private
     def answer_params
       params.require(:answer).permit(:answerer, :body)
