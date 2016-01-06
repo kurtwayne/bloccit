@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Pry Install
+gem 'pry-rails', :group => :development
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
