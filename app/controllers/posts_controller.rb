@@ -4,6 +4,11 @@ class PostsController < ApplicationController
 # objects using the all method provided by ActiveRecord. all returns a collection
 # of Post objects.
     @posts = Post.all
+    @posts.each_with_index do |post, index|
+      if (index % 5 == 0) then
+        puts post.title = "SPAM"
+      end
+    end
   end
 
   def show
