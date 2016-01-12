@@ -1,0 +1,16 @@
+<h1>All advertisements</h1>
+<!--we iterate over each advertisement in @advertisements. For each advertisement we create a link with
+advertisement.title as the text that links to /advertisements/id, with the id from the advertisement.id.
+Instance variables created in a controller method are available in its
+associated view. Since we create and assign @advertisements in advertisementsController#index
+, we can use it in the advertisements index view.-->
+<% @advertisements.each do |advertisement| %>
+<!--Bootstrap provides <div> and <h4> tags to improve our view.-->
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to advertisement.title, advertisement %>
+      </h4>
+    </div>
+  </div>
+<% end %>

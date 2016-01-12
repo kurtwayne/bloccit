@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+resources :advertisements
+
 # We call the resources method and pass it a Symbol. This instructs Rails
 # to create post routes for creating, updating, viewing, and deleting instances
 # of Post.
@@ -20,6 +22,7 @@ get 'about' => 'welcome#about'
 get 'contact' => 'welcome#contact'
 get 'faq' => 'welcome#faq'
 get 'questions' => 'welcome#questions'
+get 'advertisements' => 'welcome#advertisements'
 
   root 'welcome#index'
 end
