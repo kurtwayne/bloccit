@@ -4,6 +4,7 @@ class CreateAdvertisements < ActiveRecord::Migration
       t.string :title
       t.text :copy
       t.integer :price
+      t.boolean :resolved
 
       t.timestamps null: false
     end
