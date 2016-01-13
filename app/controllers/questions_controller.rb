@@ -22,11 +22,13 @@ class QuestionsController < ApplicationController
   # POST .../questions
   # create the question in the database
   def create
-    @question = Question.new(params.require(:question).permit(:title, :body))
+    @question = Question.new(params.require(:question).permit(:title, :body, :resolved))
 
     if @question.save
+       flash[:notice] = "Your question was saved!"
        redirect_to @question
     else
+      flash[:notice] = "You suck! Try again :)"
        render 'new'
     end
   end
@@ -42,10 +44,12 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
 
-    if @question.update(question_params)
+    if @question.update_attributes(params.require(:question).permit(:title, :body, :resolved))
+      flash[:notice] = "Your question was updated!"
       redirect_to @question
     else
-      render 'edit'
+      flash[:notice] = "Too Bad, you no good! Pwease twy again!"
+      render :edit
     end
   end
 

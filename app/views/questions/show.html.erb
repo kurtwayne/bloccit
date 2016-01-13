@@ -1,23 +1,17 @@
 <p>
-  <strong>Title:</strong>
   <%= @question.title %>
 </p>
 
 <p>
-  <strong>Text:</strong>
   <%= @question.body %>
 </p>
 
-<h2>Answers</h2>
-<%= render @question.answers %>
 <p>
+  <%= @question.resolved %>
+</p>
 
-<!-- This adds a form on the Question show page that creates a new answer by
-calling the AnswersController create action. The form_for call here uses
-an array, which will build a nested route, such as /questions/1/answers. -->
-
-<h2>Add an answer:</h2>
-<%= render 'answers/form' %>
-
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+<div class="col-md-4">
+  <%= link_to "Edit", edit_question_path(@question), class: 'btn btn-success' %>
+  <%= link_to "Delete", @question, method: :delete, class: 'btn btn-danger',
+  data: { confirm: 'Do you really want to delete this question?' } %>
+</div>

@@ -1,7 +1,7 @@
 <%= form_for([@question, @question.answers.build]) do |f| %>
 <p>
-  <%= f.label :answerer %><br>
-  <%= f.text_field :answerer %>
+  <%= f.label :title %><br>
+  <%= f.text_field :body %>
 </p>
 <p>
   <%= f.label :body %><br>

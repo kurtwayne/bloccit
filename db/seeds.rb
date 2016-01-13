@@ -21,15 +21,24 @@ posts = Post.all
   )
 end
 
-# Assign #30 - Assign unique post/comment and checking whether it already exsists
-puts "#{Post.count}"
-Post.find_or_create_by(title: "The Title", body: "The Body")
-puts "#{Post.count}"
+100.times do
+  Question.create!(
+  title: RandomData.random_sentence,
+  body: RandomData.random_paragraph,
+  resolved: false
+  )
+end
 
-puts "#{Comment.count}"
-Post.find_or_create_by(title: "Test Title", body: "Test Body")
-puts "#{Comment.count}"
+# Assign #30 - Assign unique post/comment and checking whether it already exsists
+#puts "#{Post.count}"
+#Post.find_or_create_by(title: "The Title", body: "The Body")
+#puts "#{Post.count}"
+
+#puts "#{Comment.count}"
+#Post.find_or_create_by(title: "Test Title", body: "Test Body")
+#puts "#{Comment.count}"
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Question.count} questions created"
