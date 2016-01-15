@@ -1,10 +1,19 @@
 include RandomData
 
+15.times do
+  Topic.create!(
+  name: RandomData.random_sentence,
+  description: RandomData.random_paragraph
+  )
+end
+topics = Topic.all
+
 # Create Posts
 50.times do
   # #1 we use "!" or bang to raise an error during seeding
   Post.create!(
   # #2 RandomData method is not yet created, called "wishful coding"
+  topic: topics.sample,
   title: RandomData.random_sentence,
   body: RandomData.random_paragraph
   )
@@ -50,3 +59,4 @@ puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"
+puts "#{Topic.count} topics created"

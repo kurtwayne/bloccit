@@ -5,60 +5,44 @@ include RandomData
 # treat the test as a controller test. This allows us to simulate controller
 # actions such as HTTP requests.
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe PostsController do
 
-# We create a post and assign it to my_post using let. We use RandomData to
-# give my_post a random title and body.
-  let(:my_post) { Post.create!(title: RandomData.random_sentence,
-    body: RandomData.random_paragraph) }
+   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence,
+     description: RandomData.random_paragraph) }
 
-  describe "GET index" do
-    it "returns http success" do
-# The test performs a GET on the index view and expects the response to be successful.
-      get :index
-      expect(response).to have_http_status(:success)
-    end
-
-    it "assigns [my_post] to @posts" do
-    get :index
-# Because our test created one post (my_post), we expect index to return an
-# array of one item. We use assigns, a method in ActionController::TestCase.
-# assigns gives the test access to "instance variables assigned in the action
-# that are available for the view".
-    expect(assigns(:posts)).to eq([my_post])
-  end
-end
+   let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence,
+     body: RandomData.random_paragraph) }
 
   describe "GET show" do
     it "returns http success" do
-      get :show, {id: my_post.id}
+      get :show, topic_id: my_topic.id, id: my_post.id
       expect(response).to have_http_status(:success)
     end
 
     it "renders the #show view" do
-      get :show, {id: my_post.id}
+      get :show, topic_id: my_topic.id, id: my_post.id
       expect(response).to render_template :show
     end
 
     it "assigns my_post to @post" do
-      get :show, {id: my_post.id}
+      get :show, topic_id: my_topic.id, id: my_post.id
       expect(assigns(:post)).to eq(my_post)
     end
   end
 
   describe "GET new" do
     it "returns http success" do
-      get :new
+      get :new, topic_id: my_topic.id
       expect(response).to have_http_status(:success)
     end
 
     it "renders the #new view" do
-      get :new
+      get :new, topic_id: my_topic.id
       expect(response).to render_template :new
     end
 
     it "instantsiates @post" do
-      get :new
+      get :new, topic_id: my_topic.id
       expect(assigns(:post)).not_to be_nil
     end
   end
@@ -66,36 +50,36 @@ end
   describe "POST create" do
 
     it "increases the number of Post by 1" do
-    expect{post :create, post: {title: RandomData.random_sentence,
+    expect{post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence,
       body: RandomData.random_paragraph}}.to change(Post,:count).by(1)
   end
 
     it "assigns the new post to @post" do
-      post :create, post: {title: RandomData.random_sentence,
+      post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence,
       body: RandomData.random_paragraph}
       expect(assigns(:post)).to eq Post.last
     end
 
     it "redirects to the new post" do
-      post :create, post: {title: RandomData.random_sentence,
+      post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence,
       body: RandomData.random_paragraph}
-      expect(response).to redirect_to Post.last
+      expect(response).to redirect_to [my_topic, Post.last]
     end
   end
 
   describe "GET edit" do
    it "returns http success" do
-      get :edit, {id: my_post.id}
+      get :edit, topic_id: my_topic.id, id: my_post.id
       expect(response).to have_http_status(:success)
    end
 
    it "renders the #edit view" do
-     get :edit, {id: my_post.id}
+     get :edit, topic_id: my_topic.id, id: my_post.id
      expect(response).to render_template :edit
    end
 
    it "assigns post to tbe updated to @post" do
-     get :edit, {id: my_post.id}
+     get :edit, topic_id: my_topic.id, id: my_post.id
 
      post_instance = assigns(:post)
 
@@ -110,7 +94,7 @@ end
        new_title = RandomData.random_sentence
        new_body = RandomData.random_paragraph
 
-       put :update, id: my_post.id, post: {title: new_title, body: new_body}
+       put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
 
        updated_post = assigns(:post)
        expect(updated_post.id).to eq my_post.id
@@ -122,23 +106,23 @@ end
        new_title = RandomData.random_sentence
        new_body = RandomData.random_paragraph
 
-       put :update, id: my_post.id, post: {title: new_title, body: new_body}
-       expect(response).to redirect_to my_post
+       put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
+       expect(response).to redirect_to [my_topic, my_post]
      end
    end
 
    describe "DELETE destroy" do
      it "deletes the post" do
-       delete :destroy, {id: my_post.id}
+       delete :destroy, topic_id: my_topic.id, id: my_post.id
 
        count = Post.where({id: my_post.id}).size
        expect(count).to eq 0
      end
 
-     it "redirects to posts index" do
-       delete :destroy, {id: my_post.id}
+     it "redirects to topic show" do
+       delete :destroy, topic_id: my_topic.id, id: my_post.id
 
-       expect(response).to redirect_to posts_path
+       expect(response).to redirect_to my_topic
      end
    end
 

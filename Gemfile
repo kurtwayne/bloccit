@@ -19,7 +19,8 @@ end
 
 # We add this because we want its tasks and genorators to be available for in both environments
 group :development, :test do
-   gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda'
 end
 
 # Use SCSS for stylesheets

@@ -6,13 +6,12 @@ resources :questions do
   resources :answers
 end
 
-# We call the resources method and pass it a Symbol. This instructs Rails
-# to create post routes for creating, updating, viewing, and deleting instances
-# of Post.
-
-resources :posts do
-  resources :comments
+resources :topics do
+resources :posts, except: [:index]
 end
+
+resources :comments
+
 
 resources :questions do
   resources :answers
@@ -27,6 +26,7 @@ get 'contact' => 'welcome#contact'
 get 'faq' => 'welcome#faq'
 get 'questions' => 'welcome#questions'
 get 'advertisements' => 'welcome#advertisements'
+get 'topics' => 'welcome#topics'
 
   root 'welcome#index'
 end
