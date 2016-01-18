@@ -20,6 +20,15 @@ topics = Topic.all
 end
 posts = Post.all
 
+50.times do
+  SponsoredPost.create!(
+  topic: topics.sample,
+  title: RandomData.random_sentence,
+  body: RandomData.random_paragraph
+  )
+end
+sponsored_posts = SponsoredPost.all
+
 # Create Comments
 # #3 "times" runs the block the specified number of times
 100.times do
@@ -56,6 +65,7 @@ end
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
+puts "#{SponsoredPost.count} sponsored posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"

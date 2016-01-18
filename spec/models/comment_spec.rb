@@ -9,6 +9,9 @@ RSpec.describe Comment, type: :model do
      let(:post) { topic.posts.create!(title: RandomData.random_sentence, body:
        RandomData.random_paragraph) }
 
+       let(:sponsored_post) { topic.sponsored_posts.create!(title: RandomData.random_sentence, body:
+         RandomData.random_paragraph) }
+
   let(:comment) { Comment.create!(body: 'Comment Body', post: post) }
 
   describe "attributes" do

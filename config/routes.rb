@@ -7,8 +7,9 @@ resources :questions do
 end
 
 resources :topics do
-resources :posts, except: [:index]
+resources :posts, :sponsored_posts, except: [:index]
 end
+
 
 resources :comments
 
