@@ -22,7 +22,7 @@ def user_format
   if name
     user_array = []
     name.split.each do |the_name|
-      the_name.capitalize >> user_array
+      user_array << the_name.capitalize
     end
 
       self.name = user_array.join(" ")
