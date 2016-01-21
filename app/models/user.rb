@@ -28,4 +28,3 @@ def user_format
       self.name = user_array.join(" ")
     end
   end
-end

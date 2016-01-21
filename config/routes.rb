@@ -10,9 +10,9 @@ resources :topics do
 resources :posts, :sponsored_posts, except: [:index]
 end
 
+resources :users
 
 resources :comments
-
 
 resources :questions do
   resources :answers
