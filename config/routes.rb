@@ -10,7 +10,8 @@ resources :topics do
 resources :posts, :sponsored_posts, except: [:index]
 end
 
-resources :users
+resources :users, only: [:new, :create]
+post 'users/confirm' => 'users#confirm'
 
 resources :comments
 
