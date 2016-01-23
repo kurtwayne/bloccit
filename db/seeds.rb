@@ -1,5 +1,16 @@
 include RandomData
 
+# Create Users
+ 5.times do
+   User.create!(
+   name:     RandomData.random_name,
+   email:    RandomData.random_email,
+   password: RandomData.random_sentence
+   )
+ end
+ users = User.all
+
+# Create Topics
 15.times do
   Topic.create!(
   name: RandomData.random_sentence,
@@ -13,6 +24,7 @@ topics = Topic.all
   # #1 we use "!" or bang to raise an error during seeding
   Post.create!(
   # #2 RandomData method is not yet created, called "wishful coding"
+  user:   users.sample,
   topic: topics.sample,
   title: RandomData.random_sentence,
   body: RandomData.random_paragraph
@@ -54,14 +66,12 @@ end
   )
 end
 
-# Assign #30 - Assign unique post/comment and checking whether it already exsists
-#puts "#{Post.count}"
-#Post.find_or_create_by(title: "The Title", body: "The Body")
-#puts "#{Post.count}"
-
-#puts "#{Comment.count}"
-#Post.find_or_create_by(title: "Test Title", body: "Test Body")
-#puts "#{Comment.count}"
+# email and password to test login functionality
+user = User.first
+ user.update_attributes!(
+   email: 'kurtwgardner@gmail.com',
+   password: 'Helloworld'
+ )
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
@@ -70,3 +80,4 @@ puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"
 puts "#{Topic.count} topics created"
+puts "#{User.count} users created"

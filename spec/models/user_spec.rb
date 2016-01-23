@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
+  it { should have_many(:posts)}
    # Shoulda tests for name
    it { should validate_presence_of(:name) }
    it { should validate_length_of(:name).is_at_least(1) }
@@ -32,7 +33,7 @@ RSpec.describe User, type: :model do
        user.save
        expect(user.name).to eq "John Doe"
      end
-     
+
    end
 
    describe "invalid user" do
