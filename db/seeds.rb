@@ -66,12 +66,20 @@ end
   )
 end
 
-# email and password to test login functionality
-user = User.first
- user.update_attributes!(
-   email: 'kurtwgardner@gmail.com',
-   password: 'Helloworld'
- )
+# Create and admin user
+admin = User.create!(
+name:     'Admin User',
+   email:    'admin@example.com',
+   password: 'helloworld',
+   role:     'admin'
+)
+
+# Create a member
+member = User.create!(
+  name:     'Member User',
+  email:    'member@example.com',
+  password: 'helloworld'
+)
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
