@@ -7,7 +7,11 @@ resources :questions do
 end
 
 resources :topics do
-resources :posts, :sponsored_posts, except: [:index]
+  resources :posts, :sponsored_posts, except: [:index]
+end
+
+resources :posts, only: [] do
+  resources :comments, only: [:create, :destroy]
 end
 
 resources :users, only: [:new, :create]

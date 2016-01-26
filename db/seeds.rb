@@ -42,10 +42,9 @@ end
 sponsored_posts = SponsoredPost.all
 
 # Create Comments
-# #3 "times" runs the block the specified number of times
 100.times do
   Comment.create!(
-  # #4 "sample" returns a random element from the array
+  user: users.sample,
   post: posts.sample,
   body: RandomData.random_paragraph
   )
