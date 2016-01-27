@@ -26,9 +26,10 @@
  }
 
  .btn-warning {
+   @extend .btn-success;
    background-color: red;
  }
 
-.btn-warning:hover {
-  background-color: #800000; 
+ .btn-warning:hover {
+  background-color: #800000;
 }
