@@ -9,12 +9,14 @@
   <div class="col-md-8">
     <p class="lead">
        <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
+       <%= render partial: "ratings/display", locals: { rating: @topic.rating } %>
        <br />
        <%= @topic.description %>
      </p>
     <% @topic.posts.each do |post| %>
       <%= render partial: 'posts/post', locals: { post: post } %>
       <%= render partial: "labels/list", locals: { labels: post.labels } %>
+      <%= render partial: "ratings/display", locals: { rating: post.rating } %>
     <% end %>
   </div>
   <% if current_user %>
