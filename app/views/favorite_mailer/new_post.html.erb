@@ -1,0 +1,11 @@
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-type" />
+  </head>
+  <body>
+    <h1>Here is the Post you like and are now following "<%= @post.title %>"</h1>
+    <p>
+      <%= link_to "View Post on Site and click unfollow to stop following", topic_post_url(@post.topic, @post) %>
+    </p>
+  </body>
+  </html>

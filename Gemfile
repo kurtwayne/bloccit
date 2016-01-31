@@ -38,3 +38,6 @@ gem 'bootstrap-sass'
 
 # Used for encrypting User passwords
  gem 'bcrypt'
+
+# Handles sesative data with environment variables
+ gem 'figaro', '1.0'
