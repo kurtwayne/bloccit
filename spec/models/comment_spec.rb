@@ -7,7 +7,7 @@ RSpec.describe Comment, type: :model do
     let(:user) { create(:user) }
     let(:post) { create(:post) }
     let(:sponsored_post) { topic.sponsored_posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
-    let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
+    let(:comment) { create(:comment) }
 
     it { should belong_to(:post) }
     it { should belong_to(:user) }

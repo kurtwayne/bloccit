@@ -12,7 +12,8 @@
          <h2 class="media-heading"><%= @user.name %></h2>
          <small>
            <%= pluralize(@user.posts.count, 'post') %>,
-           <%= pluralize(@user.comments.count, 'comment') %>
+           <%= pluralize(@user.comments.count, 'comment') %>,
+           <%= pluralize(@user.favorites.count, 'favorite') %>
          </small>
        </div>
      </div>
@@ -20,7 +21,10 @@
  </div>
 
  <h2>Posts</h2>
- <%= render @user.posts %>
+ <%= check_for_posts %>
 
  <h2>Comments</h2>
- <%= render @user.comments %>
+ <%= check_for_comments %>
+
+ <h2>Favorites</h2>
+ <%= check_for_favorites %>
