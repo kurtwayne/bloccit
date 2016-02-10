@@ -23,7 +23,7 @@ resources :posts, only: [] do
 end
 
 resources :users, only: [:new, :create, :show]
-post 'users/confirm' => 'users#confirm'
+  post 'users/confirm' => 'users#confirm'
 
 resources :sessions, only: [:new, :create, :destroy]
 
@@ -37,12 +37,19 @@ end
 # the root view. We also modify the about route to allow users to visit /about, rather
 # than /welcome/about.
 
-get 'about' => 'welcome#about'
-get 'contact' => 'welcome#contact'
-get 'faq' => 'welcome#faq'
-get 'questions' => 'welcome#questions'
-get 'advertisements' => 'welcome#advertisements'
-get 'topics' => 'welcome#topics'
+  get 'about' => 'welcome#about'
+  get 'contact' => 'welcome#contact'
+  get 'faq' => 'welcome#faq'
+  get 'questions' => 'welcome#questions'
+  get 'advertisements' => 'welcome#advertisements'
+  get 'topics' => 'welcome#topics'
 
   root 'welcome#index'
+
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show]
+      resources :topics, only: [:index, :show]
+    end
+  end
 end

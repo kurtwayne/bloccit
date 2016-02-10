@@ -27,4 +27,4 @@
  <%= check_for_comments %>
 
  <h2>Favorites</h2>
- <%= check_for_favorites %>
+ <%= render partial: "favorites/favorite", locals: {post: @post} %>
