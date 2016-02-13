@@ -16,7 +16,7 @@ class Api::V1::TopicsController < Api::V1::BaseController
     topic = Topic.find(params[:id])
 
     if topic.update_attributes(topic_params)
-      render json: topic.to_json, status: 200
+      render json: topic.to_json(include: :posts), status: 200
     else
       render json: {error: "Topic update failed", status: 400}, status: 400
     end
@@ -27,7 +27,7 @@ class Api::V1::TopicsController < Api::V1::BaseController
 
     if topic.valid?
       topic.save!
-      render json: topic.to_json, status: 201
+      render json: topic.to_json(include: :posts), status: 201
     else
       render json: {error: "Topic is invalid", status: 400}, status: 400
     end
